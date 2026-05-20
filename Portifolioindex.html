@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memórias que Emocionam — Diário Digital Personalizado</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #faf6ef;
+    --warm: #f2e8d5;
+    --gold: #c4922a;
+    --gold-light: #e8c97a;
+    --red: #b84040;
+    --teal: #3d7a7a;
+    --shadow: rgba(26,18,8,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURA DE PAPEL ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(250,246,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,146,42,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    background: var(--gold);
+    color: white !important;
+    opacity: 1 !important;
+    padding: 9px 22px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    gap: 64px;
+    position: relative;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink);
+    opacity: 0.65;
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 15px 36px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .btn-ghost {
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .btn-ghost:hover { opacity: 1; }
+
+  /* ── HERO VISUAL — STACK DE POLAROIDS ── */
+  .hero-visual {
+    position: relative;
+    height: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .polaroid-stack {
+    position: relative;
+    width: 260px;
+    height: 300px;
+  }
+
+  .pcard {
+    position: absolute;
+    width: 220px;
+    background: white;
+    padding: 12px 12px 40px;
+    box-shadow: 0 20px 60px var(--shadow), 0 4px 16px rgba(0,0,0,0.06);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .pcard:nth-child(1) { top: 40px; left: 0;   transform: rotate(-8deg); z-index: 1; }
+  .pcard:nth-child(2) { top: 20px; left: 20px; transform: rotate(3deg);  z-index: 2; }
+  .pcard:nth-child(3) { top: 0;    left: 10px; transform: rotate(-2deg); z-index: 3; }
+
+  .polaroid-stack:hover .pcard:nth-child(1) { transform: rotate(-14deg) translateX(-20px); }
+  .polaroid-stack:hover .pcard:nth-child(2) { transform: rotate(7deg) translateX(20px); }
+  .polaroid-stack:hover .pcard:nth-child(3) { transform: rotate(-1deg) translateY(-10px); }
+
+  .pcard-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+
+  .pcard-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--ink);
+  }
+
+  /* ── FLOATING BADGES ── */
+  .float-badge {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .float-badge:nth-child(2) { animation-delay: 1s; }
+  .float-badge:nth-child(3) { animation-delay: 2s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  .badge-a { top: 60px; right: 20px; }
+  .badge-b { bottom: 100px; right: 0; }
+  .badge-c { bottom: 40px; left: -20px; }
+
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(196,146,42,0.25);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── COMO FUNCIONA ── */
+  .how {
+    padding: 100px 48px;
+    background: var(--warm);
+    border-top: 1px solid rgba(196,146,42,0.12);
+    border-bottom: 1px solid rgba(196,146,42,0.12);
+  }
+
+  .how-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 40px;
+    right: 40px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 6px, transparent 6px, transparent 14px);
+    opacity: 0.4;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--ink);
+    opacity: 0.6;
+  }
+
+  /* ── NICHOS ── */
+  .niches {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .niche-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .niche-card {
+    border: 1px solid rgba(196,146,42,0.2);
+    border-radius: 4px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+  }
+
+  .niche-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px var(--shadow);
+  }
+
+  .niche-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .niche-card.couple::before { background: linear-gradient(90deg, var(--red), var(--gold-light)); }
+  .niche-card.gift::before   { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .niche-card.travel::before { background: linear-gradient(90deg, var(--teal), #7ecaca); }
+
+  .niche-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+
+  .niche-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .niche-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--ink);
+    opacity: 0.6;
+    margin-bottom: 24px;
+  }
+
+  .niche-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: var(--warm);
+    color: var(--ink);
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  /* ── PREÇOS ── */
+  .pricing {
+    padding: 100px 48px;
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .pricing-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pricing .section-label { justify-content: center; color: var(--gold-light); }
+  .pricing .section-label::after { display: none; }
+
+  .pricing .section-title { color: var(--cream); }
+  .pricing .section-title em { color: var(--gold-light); }
+
+  .pricing-sub {
+    font-size: 1rem;
+    opacity: 0.55;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+
+  .plan {
+    border: 1px solid rgba(250,246,239,0.1);
+    border-radius: 4px;
+    padding: 36px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .plan:hover { border-color: rgba(196,146,42,0.5); }
+
+  .plan.featured {
+    border-color: var(--gold);
+    background: rgba(196,146,42,0.06);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .plan-price span {
+    font-size: 1.2rem;
+    opacity: 0.6;
+    vertical-align: super;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  .plan-photos {
+    font-size: 0.8rem;
+    opacity: 0.45;
+    margin-bottom: 28px;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .plan-features li {
+    font-size: 0.83rem;
+    opacity: 0.7;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .plan-features li::before {
+    content: '✦';
+    color: var(--gold);
+    opacity: 0.8;
+    font-size: 0.6rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── DEPOIMENTO / PROVA SOCIAL ── */
+  .proof {
+    padding: 100px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quote-mark {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 0.6;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+
+  .quote-author {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-weight: 500;
+  }
+
+  /* ── CTA FINAL ── */
+  .final-cta {
+    padding: 100px 48px;
+    background: var(--warm);
+    text-align: center;
+    border-top: 1px solid rgba(196,146,42,0.12);
+  }
+
+  .final-cta .section-label { justify-content: center; }
+  .final-cta .section-label::after { display: none; }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold); }
+
+  .cta-sub {
+    font-size: 1rem;
+    opacity: 0.6;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-large {
+    background: var(--gold);
+    color: white;
+    padding: 18px 48px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-large:hover { background: var(--ink); transform: translateY(-2px); }
+
+  .whatsapp-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .whatsapp-link:hover { opacity: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid rgba(26,18,8,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.8rem;
+    color: var(--gold);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    opacity: 0.4;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIVIDER ORNAMENTAL ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.3;
+    font-size: 1.2rem;
+    letter-spacing: 12px;
+    padding: 20px 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
+    .hero-visual { height: 360px; }
+    .how { padding: 72px 24px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .niches { padding: 72px 24px; }
+    .niche-grid { grid-template-columns: 1fr; }
+    .pricing { padding: 72px 24px; }
+    .plans { grid-template-columns: 1fr; }
+    .proof { padding: 72px 24px; }
+    .final-cta { padding: 72px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Memórias</div>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#para-quem">Para Quem</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#contato" class="nav-cta">Encomendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text fade-in">
+    <div class="hero-eyebrow">Diário Digital Personalizado</div>
+    <h1>Transformo<br>memórias em<br><em>emoção</em></h1>
+    <p class="hero-sub">
+      Um presente único, interativo e atemporal. Fotos reais, cartas manuscritas e destinos do mundo inteiro numa página que vai fazer chorar de felicidade.
+    </p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Encomendar agora</a>
+      <a href="#como-funciona" class="btn-ghost">Ver como funciona →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-in">
+    <div class="polaroid-stack">
+      <div class="pcard">
+        <div class="pcard-img">🗼</div>
+        <p class="pcard-label">Paris, França</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img">🌸</div>
+        <p class="pcard-label">Kioto, Japão</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img">🌊</div>
+        <p class="pcard-label">Santorini, Grécia</p>
+      </div>
+    </div>
+    <div class="float-badge badge-a">
+      <div class="badge-dot"></div>
+      28 destinos pelo mundo
+    </div>
+    <div class="float-badge badge-b">
+      ✦ Entrega em até 5 dias
+    </div>
+    <div class="float-badge badge-c">
+      💌 Cartas personalizadas
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="how-inner">
+    <div class="fade-in">
+      <div class="section-label">O processo</div>
+      <h2 class="section-title">Simples como enviar<br>uma <em>mensagem</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <div class="step-title">Você manda as fotos</div>
+        <p class="step-desc">Envie pelo WhatsApp ou e-mail as fotos que quer incluir, com os locais e mensagens de cada uma.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">2</div>
+        <div class="step-title">Eu monto tudo</div>
+        <p class="step-desc">Cuido de toda a parte técnica: layout, animações, cartas e o visual de scrapbook artesanal.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <div class="step-title">Você aprova</div>
+        <p class="step-desc">Envio uma prévia para você ver e pedir ajustes. Até 2 revisões estão incluídas.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">4</div>
+        <div class="step-title">Link pronto</div>
+        <p class="step-desc">Entrego o link online para você compartilhar ou um arquivo para guardar para sempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHOS -->
+<section id="para-quem">
+  <div class="niches">
+    <div class="fade-in">
+      <div class="section-label">Para quem é</div>
+      <h2 class="section-title">Cada memória<br>merece ser <em>celebrada</em></h2>
+    </div>
+    <div class="niche-grid">
+
+      <div class="niche-card couple fade-in">
+        <span class="niche-icon">💑</span>
+        <h3 class="niche-title">Casais & Relacionamentos</h3>
+        <p class="niche-desc">Para quem quer surpreender a pessoa amada com um presente que vai muito além de flores ou chocolates. Uma declaração de amor interativa.</p>
+        <div class="niche-tags">
+          <span class="tag">Aniversário de namoro</span>
+          <span class="tag">Pedido de casamento</span>
+          <span class="tag">Longa distância</span>
+          <span class="tag">Dia dos Namorados</span>
+        </div>
+      </div>
+
+      <div class="niche-card gift fade-in">
+        <span class="niche-icon">🎁</span>
+        <h3 class="niche-title">Presentes Criativos</h3>
+        <p class="niche-desc">O presente ideal para quem já tem tudo. Algo que não pode ser comprado em loja — feito especialmente para aquela pessoa.</p>
+        <div class="niche-tags">
+          <span class="tag">Dia das Mães / Pais</span>
+          <span class="tag">Aniversário</span>
+          <span class="tag">Formatura</span>
+          <span class="tag">Despedida</span>
+        </div>
+      </div>
+
+      <div class="niche-card travel fade-in">
+        <span class="niche-icon">✈️</span>
+        <h3 class="niche-title">Viagens & Memórias</h3>
+        <p class="niche-desc">Transforme aquela viagem inesquecível num álbum digital que conta a história completa, com cada destino e sentimento registrado.</p>
+        <div class="niche-tags">
+          <span class="tag">Viagem em casal</span>
+          <span class="tag">Família espalhada</span>
+          <span class="tag">Intercâmbio</span>
+          <span class="tag">Mochilão</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section class="pricing" id="precos">
+  <div class="pricing-inner">
+    <div class="section-label">Investimento</div>
+    <h2 class="section-title">Preço justo para uma<br><em>memória para sempre</em></h2>
+    <p class="pricing-sub">Tudo feito à mão, com cuidado e atenção aos detalhes. Pagamento via Pix, parcelado ou à vista.</p>
+
+    <div class="plans">
+      <div class="plan fade-in">
+        <div class="plan-name">Essencial</div>
+        <div class="plan-price"><span>R$</span>90</div>
+        <div class="plan-photos">Até 10 fotos</div>
+        <ul class="plan-features">
+          <li>Até 10 polaroids com cartas</li>
+          <li>Filtro por região</li>
+          <li>2 revisões incluídas</li>
+          <li>Link online para compartilhar</li>
+          <li>Entrega em 3 a 5 dias</li>
+        </ul>
+      </div>
+
+      <div class="plan featured fade-in">
+        <div class="plan-badge">Mais popular</div>
+        <div class="plan-name">Completo</div>
+        <div class="plan-price"><span>R$</span>150</div>
+        <div class="plan-photos">Até 20 fotos</div>
+        <ul class="plan-features">
+          <li>Até 20 polaroids com cartas</li>
+          <li>Filtro por região + destaque</li>
+          <li>3 revisões incluídas</li>
+          <li>Link online + arquivo para guardar</li>
+          <li>Modo grelha e mesa desordenada</li>
+          <li>Entrega em 3 a 5 dias</li>
+        </ul>
+      </div>
+
+      <div class="plan fade-in">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price"><span>R$</span>220</div>
+        <div class="plan-photos">Até 30 fotos</div>
+        <ul class="plan-features">
+          <li>Até 30 polaroids com cartas</li>
+          <li>Tudo do plano Completo</li>
+          <li>Revisões ilimitadas</li>
+          <li>Página de capa personalizada</li>
+          <li>Música de fundo opcional</li>
+          <li>Prioridade na fila</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="proof">
+  <div class="fade-in">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">
+      Quando abri o link, não consegui segurar as lágrimas. Ver cada foto com uma mensagem escrita de um lugar diferente do mundo... foi o presente mais bonito que já recebi na vida.
+    </p>
+    <div class="ornament">✦ ✦ ✦</div>
+    <p class="quote-author">Mônica — Campo Bom, RS · Primeiro diário entregue</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta" id="contato">
+  <div class="fade-in">
+    <div class="section-label">Vamos começar</div>
+    <h2 class="cta-title">Pronto para<br>emocionar <em>alguém?</em></h2>
+    <p class="cta-sub">
+      Me manda uma mensagem pelo WhatsApp com as fotos e eu cuido do resto. Respondo em até 24 horas.
+    </p>
+    <div class="cta-actions">
+      <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Quero%20encomendar%20um%20Diário%20Digital%20personalizado." class="btn-large" target="_blank">
+        💬 Falar no WhatsApp
+      </a>
+      <a href="mailto:seuemail@email.com" class="whatsapp-link">
+        ✉️ Ou envie um e-mail
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Memórias</div>
+  <p class="footer-copy">Feito com muito cuidado · Diário Digital Personalizado</p>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
