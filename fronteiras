@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Amor Superou Fronteiras — Diário de Viagem Mônica & Alex</title>
+    <!-- Tailwind CSS para design ágil e moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontes premium e caligráficas -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Pinyon+Script&family=Architects+Daughter&display=swap" rel="stylesheet">
+    <style>
+        /* Fundo Estilo Pergaminho de Mapa Antigo */
+        body {
+            background-color: #f2e6d0;
+            background-image: 
+                radial-gradient(rgba(120, 80, 40, 0.15) 1px, transparent 0),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23dfcfb5' stroke-width='0.75'%3E%3Ccircle cx='80' cy='80' r='70' stroke-dasharray='4,4'/%3E%3Cpath d='M80 0v160M0 80h160'/%3E%3Cpolygon points='80,60 85,75 80,71 75,75' fill='%23dfcfb5'/%3E%3Cpolygon points='80,100 85,85 80,89 75,85' fill='%23dfcfb5'/%3E%3Cpolygon points='60,80 75,85 71,80 75,75' fill='%23dfcfb5'/%3E%3Cpolygon points='100,80 85,85 89,80 85,75' fill='%23dfcfb5'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Fontes temáticas */
+        .title-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .romantic-hand {
+            font-family: 'Pinyon Script', cursive;
+        }
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+        .letter-write {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        /* Efeito Mesa de Cortiça / Scrapbook */
+        .workspace {
+            position: relative;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Estilo Polaroid Realista com sombras suaves e relevo */
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 24px 12px;
+            box-shadow: 
+                0 15px 35px rgba(50, 30, 10, 0.15), 
+                0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            user-select: none;
+            cursor: grab;
+        }
+
+        .polaroid:active {
+            cursor: grabbing;
+            box-shadow: 
+                0 25px 50px rgba(50, 30, 10, 0.25), 
+                0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 100 !important;
+        }
+
+        /* Diferentes fitas adesivas washi-tape para segurar as fotos */
+        .washi-tape {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 100px;
+            height: 28px;
+            background-color: rgba(220, 190, 150, 0.5);
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.04);
+            border-left: 2px dashed rgba(255,255,255,0.4);
+            border-right: 2px dashed rgba(255,255,255,0.4);
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        .tape-red {
+            background-color: rgba(190, 80, 80, 0.45);
+            transform: translateX(-40%) rotate(2deg);
+        }
+
+        .tape-teal {
+            background-color: rgba(80, 150, 160, 0.45);
+            transform: translateX(-60%) rotate(-4deg);
+        }
+
+        /* Alfinete de mapa decorativo */
+        .map-pin {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        /* Mancha de café estilizada no fundo */
+        .coffee-stain {
+            background: radial-gradient(circle, transparent 40%, rgba(100, 70, 40, 0.08) 50%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Visualizador de Envelope que Abre */
+        .envelope-paper {
+            background-color: #fffdf6;
+            background-image: 
+                radial-gradient(#e5d8c3 1px, transparent 1px);
+            background-size: 24px 24px;
+            border-left: 3px double rgba(190, 80, 80, 0.2);
+        }
+
+        /* Personalização de Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f2e6d0;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2b092;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 relative selection:bg-amber-900 selection:text-white">
+
+    <!-- Efeito Decorativo de Bússola e Manchas de Café -->
+    <div class="absolute top-20 left-10 w-96 h-96 coffee-stain rounded-full select-none opacity-60"></div>
+    <div class="absolute bottom-40 right-10 w-80 h-80 coffee-stain rounded-full select-none opacity-40"></div>
+
+    <!-- Cabeçalho Romântico e Aventureiro -->
+    <header class="text-center pt-12 pb-4 px-4 relative z-20">
+        <span class="romantic-hand text-5xl md:text-7xl text-amber-800 block mb-2">Amor sem Limites</span>
+        <h1 class="text-4xl md:text-6xl font-bold text-amber-950 title-serif tracking-tight drop-shadow-sm">
+            O Amor Superou Fronteiras
+        </h1>
+        <p class="text-lg md:text-xl text-amber-900/80 max-w-2xl mx-auto handwritten mt-4 font-bold">
+            Mônica, cada fotografia e cada palavra manuscrita vinda de todos os cantos do planeta é a prova de que o amor do Alex atravessa oceanos, cruza céus e ignora qualquer linha divisória.
+        </p>
+
+        <!-- Indicadores de Viagem -->
+        <div class="flex flex-wrap justify-center gap-4 mt-6 text-xs font-semibold uppercase tracking-wider text-amber-950">
+            <span class="bg-amber-950/10 px-4 py-2 rounded-full border border-amber-950/20 backdrop-blur-sm">✈️ 28 Localizações</span>
+            <span class="bg-amber-950/10 px-4 py-2 rounded-full border border-amber-950/20 backdrop-blur-sm">🗺️ Diário de Bordo Ativo</span>
+            <span class="bg-amber-950/10 px-4 py-2 rounded-full border border-amber-950/20 backdrop-blur-sm">❤️ Distância Vencida</span>
+        </div>
+
+        <!-- Seletor de Modo de Exibição & Filtros -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 bg-amber-900/10 p-3 rounded-2xl max-w-2xl mx-auto border border-amber-900/10 backdrop-blur-md">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-amber-950 uppercase">Visualização:</span>
+                <button onclick="setGridMode(true)" id="btn-grid" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950 text-white shadow">
+                    📋 Grelha Alinhada
+                </button>
+                <button onclick="setGridMode(false)" id="btn-scatter" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950/10 text-amber-950">
+                    🎲 Mesa Desordenada
+                </button>
+            </div>
+            <div class="h-4 w-[1px] bg-amber-900/20 hidden sm:block"></div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-amber-950 uppercase">Região:</span>
+                <select id="regionFilter" onchange="applyFilters()" class="bg-amber-50 text-amber-950 text-xs font-bold rounded-lg px-3 py-1.5 border border-amber-900/20 focus:outline-none focus:ring-2 focus:ring-amber-900">
+                    <option value="todos">Todos os Cantos 🌍</option>
+                    <option value="brasil">Brasil 🇧🇷</option>
+                    <option value="europa">Europa 🇪🇺</option>
+                    <option value="norteamerica">América do Norte 🇺🇸🇨🇦</option>
+                    <option value="latam">América Latina 🇲🇽</option>
+                    <option value="asia">Ásia 🇯🇵</option>
+                </select>
+            </div>
+        </div>
+        <p id="scatter-hint" class="text-xs text-amber-900/60 mt-2 italic hidden">Dica: Podes arrastar, mover e reorganizar as fotos livremente pela mesa de trabalho!</p>
+    </header>
+
+    <!-- Área de Trabalho / Mesa do Scrapbook -->
+    <main class="container mx-auto px-4 mt-6 relative z-10">
+        <div id="workspace" class="workspace grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center min-h-[800px]">
+            
+            <!-- Polaroid 1 - Campo Bom -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="0">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379302.png" alt="Campo Bom, RS" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">RS 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Campo Bom, RS</p>
+                <button onclick="openEnvelope(0)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 2 - New York -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="norteamerica" data-index="1">
+                <div class="washi-tape"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379304.png" alt="New York, USA" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-blue-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">NY 🇺🇸</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">New York, USA</p>
+                <button onclick="openEnvelope(1)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 3 - Dublin -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="2">
+                <div class="washi-tape tape-teal"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379305.png" alt="Dublin, Irlanda" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-800 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">IE 🇮🇪</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Dublin, Irlanda</p>
+                <button onclick="openEnvelope(2)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 4 - Fukuoka -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="asia" data-index="3">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000393283.png" alt="Fukuoka, Japão" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">JP 🇯🇵</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Fukuoka, Japão</p>
+                <button onclick="openEnvelope(3)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 5 - Santorini -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="4">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000393839.png" alt="Santorini, Grécia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">GR 🇬🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Santorini, Grécia</p>
+                <button onclick="openEnvelope(4)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 6 - Alpes Suíços -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="5">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382252.png" alt="Alpes Suíços" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CH 🇨🇭</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Alpes Suíços, Suíça</p>
+                <button onclick="openEnvelope(5)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 7 - Valencia -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="6">
+                <div class="washi-tape"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379301.png" alt="Valencia, Espanha" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-yellow-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">ES 🇪🇸</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Valencia, Espanha</p>
+                <button onclick="openEnvelope(6)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 8 - Alagoas -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="7">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379303.png" alt="Maragogi, Maceió" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-indigo-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">BR 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Alagoas, Maceió</p>
+                <button onclick="openEnvelope(7)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 9 - Ottawa -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="norteamerica" data-index="8">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379311.png" alt="Ottawa, Canadá" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CA 🇨🇦</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Ottawa, Canadá</p>
+                <button onclick="openEnvelope(8)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 10 - Lisboa Ponte -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="9">
+                <div class="washi-tape tape-teal"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379312.png" alt="Lisboa, Portugal" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-green-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">PT 🇵🇹</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Lisboa, Portugal</p>
+                <button onclick="openEnvelope(9)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 11 - Lisboa Belém -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="10">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000379313.png" alt="Torre de Belém" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-green-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">PT 🇵🇹</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Torre de Belém, PT</p>
+                <button onclick="openEnvelope(10)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 12 - Waterloo Canadá -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="norteamerica" data-index="11">
+                <div class="washi-tape"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382149.png" alt="Waterloo Canadá" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CAN 🇨🇦</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Waterloo, Canadá</p>
+                <button onclick="openEnvelope(11)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 13 - Milão Itália -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="12">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382253.png" alt="Milão Itália" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">IT 🇮🇹</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Milão, Itália</p>
+                <button onclick="openEnvelope(12)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 14 - Saltillo México -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="latam" data-index="13">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382618.jpg" alt="Saltillo México" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">MX 🇲🇽</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Saltillo, México</p>
+                <button onclick="openEnvelope(13)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 15 - Gramado RS -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="14">
+                <div class="washi-tape tape-teal"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382622.png" alt="Gramado, RS" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">RS 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Gramado, RS</p>
+                <button onclick="openEnvelope(14)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 16 - Tangará RN -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="15">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000382634.png" alt="Tangará, RN" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">RN 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Tangará, RN</p>
+                <button onclick="openEnvelope(15)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 17 - Fortaleza CE -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="16">
+                <div class="washi-tape"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000386982.jpg" alt="Fortaleza, CE" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">CE 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Fortaleza, CE</p>
+                <button onclick="openEnvelope(16)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 18 - Finlândia -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="17">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000391886.jpg" alt="Seinäjoki Finlândia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">FI 🇫🇮</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Seinäjoki, Finlândia</p>
+                <button onclick="openEnvelope(17)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 19 - Londres UK -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="18">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000393707.png" alt="Londres, UK" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-purple-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">UK 🇬🇧</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">London, UK</p>
+                <button onclick="openEnvelope(18)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+			
+			<!-- Polaroid 20 - Belém, PA -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="brasil" data-index="19">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="1000207.png" alt="Belém, PA" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">PA 🇧🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Belém, Pará</p>
+                <button onclick="openEnvelope(19)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+			
+			<!-- Polaroid 21 - Vilnius, Lt -->
+			<div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="20">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001238.Png" alt="Vilnius, Lituânia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded shadow">LT 🇱🇹</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Vilnius, Lituânia</p>
+                <button onclick="openEnvelope(20)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 22 - Amsterdã, NL -->    
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="21">
+                <div class="washi-tape"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001239.Png" alt="Amsterdã, Países Baixos" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">NL 🇳🇱</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Amsterdã, Países Baixos</p>
+                <button onclick="openEnvelope(21)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+			
+            <!-- Polaroid 23 - Estocolmo, SE -->  
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="22">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001240.Png" alt="Estocolmo, Suécia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">SE 🇸🇪</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Estocolmo, Suécia</p>
+                <button onclick="openEnvelope(22)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 24 - Dubrovnik, HR -->  
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="23">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001241.Png" alt="Dubrovnik, Croácia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">HR 🇭🇷</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Dubrovnik, Croácia</p>
+                <button onclick="openEnvelope(23)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+            
+			<!-- Polaroid 25 - Odessa, UA -->  
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="24">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001242.Png" alt="Odessa, Ucrânia" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-yellow-400 text-black text-[10px] font-bold px-2 py-0.5 rounded shadow">UA 🇺🇦</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Odessa, Ucrânia</p>
+                <button onclick="openEnvelope(24)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 26 - Valeta, MT -->  
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="25">
+                <div class="washi-tape tape-teal"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001243.Png" alt="Valeta, Malta" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">MT 🇲🇹</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Valeta, Malta</p>
+                <button onclick="openEnvelope(25)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 26 - Budapeste, HU -->  
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="26">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001244.Png" alt="Budapeste, Hungria" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">HU 🇭🇺</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Budapeste, Hungria</p>
+                <button onclick="openEnvelope(26)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 26 - Munich, DE --> 
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="27">
+                <div class="washi-tape tape-red"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="10001245.Png" alt="Munich, Alemanha" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-black text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">DE 🇩🇪</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Munique, Alemanha</p>
+                <button onclick="openEnvelope(27)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+			
+
+
+            <!-- Polaroid 27 - Customizada Extra 1 -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="norteamerica" data-index="19">
+                <div class="washi-tape tape-teal"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&q=80&w=400" alt="Alasca" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-amber-800 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">Extra ❤️</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Aventura nas Montanhas</p>
+                <button onclick="openEnvelope(19)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+            <!-- Polaroid 28 - Customizada Extra 2 -->
+            <div class="polaroid w-64 relative group flex flex-col" data-region="europa" data-index="20">
+                <div class="map-pin"></div>
+                <div class="w-full h-52 bg-stone-100 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=400" alt="Barco" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" draggable="false">
+                    <div class="absolute top-2 right-2 bg-amber-800 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">Extra ❤️</div>
+                </div>
+                <p class="handwritten text-xl font-bold mt-3 text-center text-stone-800">Destino ao Infinito</p>
+                <button onclick="openEnvelope(20)" class="mt-auto bg-amber-900/10 hover:bg-amber-900 hover:text-white transition text-amber-900 text-[11px] font-bold py-1.5 rounded-md uppercase tracking-wider">Ler Carta</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal Envelope de Viagem Clássico (Lightbox Interativo) -->
+    <div id="envelopeModal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 transition-all duration-300">
+        <div class="bg-[#fcf9f2] rounded-3xl max-w-5xl w-full overflow-hidden shadow-2xl border-4 border-amber-900/20 relative flex flex-col lg:flex-row transform scale-95 transition-all duration-300" id="envelopeCard">
+            
+            <!-- Botão de Fechar -->
+            <button onclick="closeEnvelope()" class="absolute top-4 right-4 z-50 bg-amber-950 text-amber-50 rounded-full p-2.5 hover:bg-amber-900 transition shadow-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Lado Esquerdo: A Foto Polaroid Enquadrada -->
+            <div class="w-full lg:w-1/2 p-8 flex items-center justify-center bg-amber-950/5 relative">
+                <!-- Carimbo Postal Gigante no Fundo -->
+                <div class="absolute bottom-6 right-6 w-32 h-32 border-4 border-dashed border-red-800/10 rounded-full flex items-center justify-center rotate-12 select-none pointer-events-none">
+                    <span class="text-xs uppercase font-extrabold text-red-800/20 tracking-widest text-center handwritten">Via Aérea<br>Special Mail</span>
+                </div>
+
+                <div class="bg-white p-5 pb-14 shadow-2xl transform -rotate-1 max-w-[340px] w-full border border-stone-200/50">
+                    <img id="modal-img" src="" alt="Carta de Amor" class="w-full h-80 object-cover border border-stone-100">
+                    <p id="modal-caption" class="handwritten text-center text-2xl mt-4 text-stone-800 font-bold"></p>
+                </div>
+            </div>
+
+            <!-- Lado Direito: A Carta de Papel Autêntica Transcrita -->
+            <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between relative envelope-paper">
+                <div>
+                    <!-- Detalhe da bordinha de envelope postal clássico -->
+                    <div class="absolute top-0 left-0 right-0 h-2 bg-repeat-x" style="background-image: repeating-linear-gradient(-45deg, #be5050, #be5050 10px, transparent 10px, transparent 20px, #5096a0 20px, #5096a0 30px, transparent 30px, transparent 40px);"></div>
+                    
+                    <div class="flex items-center justify-between mb-6 mt-4">
+                        <span id="modal-badge" class="bg-amber-900/10 text-amber-950 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-900/20 tracking-wider">MARCO POSTAL</span>
+                        <div class="w-10 h-10 border-2 border-red-800/30 rounded-md flex items-center justify-center text-red-800/30 text-xs font-bold rotate-12">SELO</div>
+                    </div>
+
+                    <h3 class="title-serif text-3xl font-bold text-amber-950 mb-6 flex items-center gap-2">
+                        <span>💌</span> Transcrição Manuscrita
+                    </h3>
+
+                    <!-- Bloco de pautas -->
+                    <div class="bg-white/90 border border-amber-900/10 p-6 rounded-xl shadow-inner relative overflow-y-auto max-h-[320px] custom-scrollbar">
+                        <p id="modal-text" class="letter-write text-base md:text-lg text-blue-900 leading-8 tracking-wide">
+                            A carregar sentimentos...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-amber-900/15 flex justify-between items-center text-xs text-amber-900/70 font-semibold uppercase tracking-wider">
+                    <span>O amor não conhece distâncias.</span>
+                    <span class="text-amber-950">Mônica ❤️</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Rodapé Emotivo -->
+    <footer class="text-center mt-20 text-amber-950/60 font-sans text-sm relative z-20 px-4">
+        <p class="romantic-hand text-5xl text-amber-900 block mb-2">Para Sempre</p>
+        <p class="font-bold">"O amor é a única coisa que viaja no tempo e no espaço, superando todas as fronteiras."</p>
+        <p class="mt-2 text-xs opacity-80">© Feito com todo o coração para a você.</p>
+    </footer>
+
+    <!-- Lógica Interativa Scrapbook & Draggable -->
+    <script>
+        // Dados de todas as 21 polaroids com transcrições fiéis tiradas das imagens reais
+        const letters = [
+            {
+                img: "1000379302.png",
+                caption: "Campo Bom, RS",
+                badge: "Rio Grande do Sul 🇧🇷",
+                text: "Oi, Mônica!\n\nO amor do Alex por ti, é tão grande que chegou aqui no Rio Grande do Sul.\n\nBah! Que amor lindo, tchê!\n\n— Cristiane Chaves\nCampo Bom / RS"
+            },
+            {
+                img: "1000379304.png",
+                caption: "New York, USA",
+                badge: "New York, EUA 🇺🇸",
+                text: "Monica,\n\nO amor do Alex por você é tão grande que chegou aqui em New York.\n\nNew York, NY\nUSA 🗽"
+            },
+            {
+                img: "1000379305.png",
+                caption: "Dublin, Irlanda",
+                badge: "Dublin, Irlanda 🇮🇪",
+                text: "Monica,\n\nO AMOR DO ALEX POR VOCÊ É TÃO GRANDE Que chegou AQUI DO OUTRO LADO Do mundo!\n\n— Dublin, Irlanda\nEVACYA ✈️"
+            },
+            {
+                img: "1000393283.png",
+                caption: "Fukuoka, Japão",
+                badge: "Fukuoka, Japão 🇯🇵",
+                text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui no Japão. ♡\n\nFukuoka Stadium, Japão\n(福岡市, 日本スタジアム)"
+            },
+            {
+                img: "1000393839.png",
+                caption: "Santorini, Grécia",
+                badge: "Santorini, Grécia 🇬🇷",
+                text: "Mônica,\n\nO amor da Alex por você é tão grande que chegou aqui do outro lado do mundo.\n\nSantorini, Grécia ♡\nGrécia"
+            },
+            {
+                img: "1000382252.png",
+                caption: "Alpes Suíços, Suíça",
+                badge: "Alpes Suíços, Suíça 🇨🇭",
+                text: "Oi Monica,\n\nO amor do Alex Por você é tão grande que chegou aqui nos Alpes Suíços, Suíça.\n\n♡ Com carinho,\nGiovannio 'Samba de Dom'"
+            },
+            {
+                img: "1000379301.png",
+                caption: "Valencia, Espanha",
+                badge: "Valência, Espanha 🇪🇸",
+                text: "Oi Monica,\n\nO Amor do Alex por você é tão grande que chegou aqui en España.\n\n❤️ Valencia."
+            },
+            {
+                img: "1000379303.png",
+                caption: "Maragogi, Maceió",
+                badge: "Maceió, Brasil 🇧🇷",
+                text: "Oi Monica,\n\nO amor do Alex por você é tão grande que chegou aqui em Paris!\n\n♡ Alzenio - Al"
+            },
+            {
+                img: "1000379311.png",
+                caption: "Ottawa, Canadá",
+                badge: "Ottawa, Canadá 🇨🇦",
+                text: "Monica,\n\nO AMOR DO ALEX POR VOCÊ É TÃO GRANDE QUE CHEGOU AQUI DO OUTRO LADO DO MUNDO.\n\nOTTAWA, CANADA 🇨🇦🍁"
+            },
+            {
+                img: "1000379312.png",
+                caption: "Lisboa, Portugal",
+                badge: "Lisboa, Portugal 🇵🇹",
+                text: "Oi Monica,\n\nO amor do Alex por você é tão grande que chegou aqui em Portugal.\n\nLisboa, PT\n♡"
+            },
+            {
+                img: "1000379313.png",
+                caption: "Torre de Belém, PT",
+                badge: "Lisboa, Portugal 🇵🇹",
+                text: "MONICA,\n\nO AMOR DO ALEX POR VOCÊ É TÃO GRANDE QUE CHEGOU AQUI DO OUTRO LADO DO MUNDO.\n\nPORTUGAL ♡"
+            },
+            {
+                img: "1000382149.png",
+                caption: "Waterloo, Canadá",
+                badge: "Waterloo, Canadá 🇨🇦",
+                text: "Oi Monica,\n\nO amor do Alex por você é tão grande que chegou aqui no Canadá.\n\n♡ Waterloo, ON"
+            },
+            {
+                img: "1000382253.png",
+                caption: "Milão, Itália",
+                badge: "Milão, Itália 🇮🇹",
+                text: "Oi Monica,\n\nO amor do Alex Por você é tão grande que chegou aqui na Italia.\n\nFiorin Fiorello, Italia"
+            },
+            {
+                img: "1000382618.Png",
+                caption: "Saltillo, México",
+                badge: "Saltillo, México 🇲🇽",
+                text: "Monica, o amor do Alex por você é tão grande que chegou aqui.\n\nSaltillo, México\n♡"
+            },
+            {
+                img: "1000382622.png",
+                caption: "Gramado, RS",
+                badge: "Rio Grande do Sul 🇧🇷",
+                text: "Monica,\n\nO amor da Alex pra você é tão grande que chegou até aqui!\n\n♡ Gramado / RS"
+            },
+            {
+                img: "1000382634.png",
+                caption: "Tangará, RN",
+                badge: "Rio Grande do Norte 🇧🇷",
+                text: "Monica,\n\no amor do Alex é tão grande que chegou aqui em...\n\nTangará - RN\n♡"
+            },
+            {
+                img: "1000386982.jpg",
+                caption: "Fortaleza, CE",
+                badge: "Ceará, Brasil 🇧🇷",
+                text: "Oi Monica,\n\no amor do Alex por você é tão grande que chegou aqui no Ceará.\n\n❤️ Fortaleza."
+            },
+            {
+                img: "1000391886.jpg",
+                caption: "Seinäjoki, Finlândia",
+                badge: "Finlândia 🇫🇮",
+                text: "Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Finlândia. ♡\n\nSeinäjoki, Finlândia. ♡"
+            },
+            {
+                img: "1000393707.png",
+                caption: "London, UK",
+                badge: "Londres, Inglaterra 🇬🇧",
+                text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Inglaterra. ♡\n\nLondon, Inglaterra (Londres, Inglaterra).\n<3"
+            },
+            {
+    img: "10001238.Png",
+    caption: "Vilnius, Lituânia",
+    badge: "Vilnius, Lituânia 🇱🇹",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Lituânia. ♡\n\nVilnius, Lituânia.\nAš tave myliu"
+},
+{
+    img: "10001239.Png",
+    caption: "Amsterdã, Países Baixos",
+    badge: "Amsterdã, Países Baixos 🇳🇱",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui nos Países Baixos. ♡\n\nAmsterdã, Países Baixos.\nIk houd van jou"
+},
+{
+    img: "10001240.Png",
+    caption: "Estocolmo, Suécia",
+    badge: "Estocolmo, Suécia 🇸🇪",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Suécia. ♡\n\nEstocolmo, Suécia.\njag älskar dig"
+},
+{
+    img: "10001241.Png",
+    caption: "Dubrovnik, Croácia",
+    badge: "Dubrovnik, Croácia 🇭🇷",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Croácia. ♡\n\nDubrovnik, Croácia.\ne lá"
+},
+{
+    img: "10001242.Png",
+    caption: "Odessa, Ucrânia",
+    badge: "Odessa, Ucrânia 🇺🇦",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Ucrânia. ♡\n\nOdessa, Ucrânia.\nя люблю тебе"
+},
+{
+    img: "10001243.Png",
+    caption: "Valeta, Malta",
+    badge: "Valeta, Malta 🇲🇹",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui em Malta. ♡\n\nValeta, Malta.\nInhobbok"
+},
+{
+    img: "10001244.Png",
+    caption: "Budapeste, Hungria",
+    badge: "Budapeste, Hungria 🇭🇺",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Hungria. ♡\n\nBudapeste, Hungria.\nszeretlek"
+},
+{
+    img: "10001245.Png",
+    caption: "Munique, Alemanha",
+    badge: "Munique, Alemanha 🇩🇪",
+    text: "Oi Mônica,\n\nO amor do Alex por você é tão grande, que chegou aqui na Alemanha. ♡\n\nMunique, Alemanha.\nIch liebe dich"
+},			
+            {
+                img: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&q=80&w=400",
+                caption: "Parques Nacionais",
+                badge: "América do Norte 🏔️",
+                text: "Monica, o amor do Alex supera as florestas mais profundas e as montanhas mais gélidas!"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=400",
+                caption: "Oceano Atlântico",
+                badge: "Águas Internacionais 🌊",
+                text: "Por todas as rotas marítimas, este amor veleja firme rumo ao porto seguro que és tu."
+            }
+        ];
+
+        let isGrid = true;
+        const polaroids = document.querySelectorAll('.polaroid');
+        const workspace = document.getElementById('workspace');
+
+        // Configurar posições iniciais dispersas e permitir drag-and-drop no modo Mesa
+        function initScatterPositions() {
+            polaroids.forEach((card, index) => {
+                if (!isGrid) {
+                    const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
+                    const randomY = Math.floor(Math.random() * 800) + 150;
+                    const randomRot = Math.floor(Math.random() * 30) - 15;
+
+                    card.style.position = 'absolute';
+                    card.style.left = `${randomX}px`;
+                    card.style.top = `${randomY}px`;
+                    card.style.transform = `rotate(${randomRot}deg)`;
+                    makeElementDraggable(card);
+                } else {
+                    card.style.position = 'relative';
+                    card.style.left = 'auto';
+                    card.style.top = 'auto';
+                    // Rotações suaves padrões da grelha de scrapbook
+                    const subtleRots = [-3, 2, -4, 3, -2, 4, -3, 2, -1, 3, -2, 5, -3, 2, -5, 3, -1, 4, -3, 2, -4];
+                    card.style.transform = `rotate(${subtleRots[index % subtleRots.length]}deg)`;
+                }
+            });
+        }
+
+        // Alternar entre modo grelha e disperso
+        function setGridMode(gridMode) {
+            isGrid = gridMode;
+            
+            // Alterar classes do contentor principal
+            if (isGrid) {
+                workspace.className = "workspace grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center min-h-[800px]";
+                document.getElementById('btn-grid').className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950 text-white shadow";
+                document.getElementById('btn-scatter').className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950/10 text-amber-950";
+                document.getElementById('scatter-hint').classList.add('hidden');
+            } else {
+                workspace.className = "workspace block relative min-h-[1400px]";
+                document.getElementById('btn-grid').className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950/10 text-amber-950";
+                document.getElementById('btn-scatter').className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-amber-950 text-white shadow";
+                document.getElementById('scatter-hint').classList.remove('hidden');
+            }
+
+            initScatterPositions();
+        }
+
+        // Lógica de Arrasto Livre (Drag-and-Drop) para Desktop e Touchscreen
+        let highestZ = 10;
+        function makeElementDraggable(elmnt) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            
+            elmnt.onmousedown = dragMouseDown;
+            elmnt.ontouchstart = dragMouseDown;
+
+            function dragMouseDown(e) {
+                if (isGrid) return; // Não arrasta no modo grelha
+                e = e || window.event;
+                
+                // Evitar arrastar se clicar no botão "Ler Carta"
+                if (e.target.tagName === 'BUTTON') return;
+
+                highestZ++;
+                elmnt.style.zIndex = highestZ;
+
+                // Obter posições base conforme mouse ou toque
+                const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+                pos3 = clientX;
+                pos4 = clientY;
+                
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+                document.ontouchend = closeDragElement;
+                document.ontouchmove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+                const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+                pos1 = pos3 - clientX;
+                pos2 = pos4 - clientY;
+                pos3 = clientX;
+                pos4 = clientY;
+
+                // Definir nova posição garantindo que não foge dos limites
+                const newTop = elmnt.offsetTop - pos2;
+                const newLeft = elmnt.offsetLeft - pos1;
+
+                elmnt.style.top = `${Math.max(10, newTop)}px`;
+                elmnt.style.left = `${Math.max(10, newLeft)}px`;
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
+            }
+        }
+
+        // Abrir envelope com efeito de zoom
+        function openEnvelope(index) {
+            const data = letters[index];
+            if (!data) return;
+
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-caption').innerText = data.caption;
+            document.getElementById('modal-badge').innerText = data.badge;
+            document.getElementById('modal-text').innerHTML = data.text.replace(/\n/g, '<br>');
+
+            const modal = document.getElementById('envelopeModal');
+            const card = document.getElementById('envelopeCard');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 50);
+        }
+
+        // Fechar envelope
+        function closeEnvelope() {
+            const modal = document.getElementById('envelopeModal');
+            const card = document.getElementById('envelopeCard');
+            
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 200);
+        }
+
+        // Fechar se clicar fora da zona do cartão
+        document.getElementById('envelopeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEnvelope();
+            }
+        });
+
+        // Aplicar filtros de região
+        function applyFilters() {
+            const selectedRegion = document.getElementById('regionFilter').value;
+            
+            polaroids.forEach(card => {
+                const region = card.getAttribute('data-region');
+                if (selectedRegion === 'todos' || region === selectedRegion) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Se estiver em modo mesa desordenada, redistribui as visíveis para não ficarem escondidas
+            if (!isGrid) {
+                initScatterPositions();
+            }
+        }
+
+        // Executar após o carregamento completo do DOM
+        window.onload = function() {
+            initScatterPositions();
+        }
+    </script>
+</body>
+</html>
